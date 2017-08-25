@@ -10,7 +10,7 @@ import requests
 
 
 class LoginView(View):
-    template_name = 'login.html'
+    template_name = 'login/login.html'
 
     def get(self, request):
         if request.user.is_authenticated:

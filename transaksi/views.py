@@ -11,7 +11,7 @@ class HarusLogin(LoginRequiredMixin):
     login_url = '/login/'
 
 class ListTransaksiView(HarusLogin, View):
-    template_name = 'list_transaksi.html'
+    template_name = 'transaksi/list_transaksi.html'
 
     def get(self, request, jurnal_id):
         jurnal = Jurnal.objects.get(pk=jurnal_id)
@@ -57,7 +57,7 @@ class SimpanTransaksiView(HarusLogin,View):
             return redirect(reverse_lazy('transaksi:view', kwargs={'jurnal_id': jurnal_id}))
 
 class UbahTransaksiView(HarusLogin,View):
-    template_name = 'list_transaksi_ubah.html'
+    template_name = 'transaksi/list_transaksi_ubah.html'
     def get(self, request, jurnal_id, trx_id):
         jurnal = Jurnal.objects.get(pk=jurnal_id)
         transaksi = Transaksi.objects.get(jurnal=jurnal, pk=trx_id)

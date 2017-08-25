@@ -10,7 +10,7 @@ class HarusLogin(LoginRequiredMixin):
     login_url = '/login/'
 
 class ListJurnalView(HarusLogin, View):
-    template_name = 'list_jurnal.html'
+    template_name = 'jurnal/list_jurnal.html'
 
     def get(self, request):
         data = {
@@ -20,7 +20,7 @@ class ListJurnalView(HarusLogin, View):
 
 
 class TambahJurnalView(HarusLogin, View):
-    template_name = 'tambah_jurnal.html'
+    template_name = 'jurnal/tambah_jurnal.html'
 
     def get(self, request):
         form = JurnalForm(request.POST or None)
@@ -28,7 +28,7 @@ class TambahJurnalView(HarusLogin, View):
 
 
 class SimpanJurnalView(HarusLogin, View):
-    template_name = 'tambah_jurnal.html'
+    template_name = 'jurnal/tambah_jurnal.html'
 
     def post(self, request):
         form = JurnalForm(request.POST or None)
@@ -45,7 +45,7 @@ class SimpanJurnalView(HarusLogin, View):
 
 
 class EditJurnalView(HarusLogin, View):
-    template_name = 'edit_jurnal.html'
+    template_name = 'jurnal/edit_jurnal.html'
 
     def get(self, request, id):
         jurnal = Jurnal.objects.get(pk=id)
