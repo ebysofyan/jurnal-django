@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% load widget_tweaks %} {% block content %}
+<a href="{% url 'jurnal:tambah' %}" class="btn btn-primary" style="margin-bottom: 8px;">Tambah Jurnal <i class="fa fa-plus"></i></a>
+<table id="tbl" class="table table-striped table-hovered table-bordered">
+    <thead>
+        <tr>
+            <th>Nomor</th>
+            <th>Nama Jurnal Kegiatan</th>
+            <th>Keterangan Jurnal Kegiatan</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for jurnal in list_jurnal %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{jurnal.nama}}</td>
+            <td>{{jurnal.keterangan}}</td>
+            <td>
+                <div class="btn-group">
+                    <a href="{% url 'jurnal:edit' id=jurnal.pk %}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                    <a href="{% url 'jurnal:hapus' id=jurnal.pk %}" class="btn btn-danger" onclick="return confirm('Yakin nih mau ngapus aku? :(')"><i class="fa fa-trash"></i></a>
+                    <a href="{% url 'transaksi:view' jurnal_id=jurnal.pk %}" class="btn btn-success">Transaksi</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %} {% block js %}
+<script>
+    $(document).ready(function () {
+        $('#tbl').DataTable();
+    });
+</script>
+{% endblock js %}

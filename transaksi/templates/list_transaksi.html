@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% load widget_tweaks %} {% block content %}
+<div class="col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Tambah Transaksi</h4>
+        </div>
+        <div class="panel-body">
+            <form method="POST" action="{% url 'transaksi:simpan' jurnal_id=jurnal.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="" class="control-label">Tanggal</label> {% render_field form.tanggal class="form-control"%}
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Uraian</label> {% render_field form.uraian class="form-control" %}
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Debt</label> {% render_field form.debt class="form-control" %}
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Kredit</label> {% render_field form.kredit class="form-control" %}
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-danger" href="/jurnal/"><i class="fa fa-arrow-left"></i> Kembali</a>
+                    <button class="btn btn-primary pull-right" style="margin-left: 8px;">Simpan <i class="fa fa-plus"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-9">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>List Transaksi pada jurnal : <b>{{jurnal.nama}}</b></h4>
+            <h4>Total Kas : <b>{{total_kas}}</b></h4>
+        </div>
+        <div class="panel-body">
+            <table id="tbl" class="table table-striped table-hovered table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nomor</th>
+                        <th>Tanggal</th>
+                        <th>Uraian</th>
+                        <th>Debt</th>
+                        <th>Kredit</th>
+                        <th>Kas</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hasil in list_hasil %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{hasil.tanggal}}</td>
+                        <td>{{hasil.uraian}}</td>
+                        <td>{{hasil.debt}}</td>
+                        <td>{{hasil.kredit}}</td>
+                        <td>{{hasil.kas}}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{% url 'transaksi:ubah' jurnal_id=jurnal.id trx_id=hasil.id%}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'transaksi:hapus' jurnal_id=jurnal.id trx_id=hasil.id%}" class="btn btn-danger" onclick="return confirm('Yakin nih mau ngapus aku? :(')"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %} {% block js %}
+<script>
+    $(document).ready(function () {
+        $('#tbl').DataTable({
+            "aLengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+        });
+    });
+</script>
+{% endblock js %}

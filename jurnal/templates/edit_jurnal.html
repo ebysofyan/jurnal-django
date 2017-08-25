@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% load widget_tweaks %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Tambah Jurnal</h4>
+    </div>
+    <div class="panel-body">
+        <form method="POST" action="{% url 'jurnal:update' %}">
+            {% csrf_token %} {{form.id}}
+            <div class="form-group">
+                <label for="" class="control-label">Nama Kegiatan Jurnal</label> {{form.nama | add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                <label for="" class="control-label">Keterangan Kegiatan Jurnal</label> {{form.keterangan | add_class:"form-control"}}
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary pull-right" style="margin-left: 8px;">Update <i class="fa fa-refresh"></i></button>
+                <a href="/jurnal/" class="btn btn-danger pull-right"><i class="fa fa-arrow-left"></i> Kembali</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
