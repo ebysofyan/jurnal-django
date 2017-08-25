@@ -1,5 +1,5 @@
 from django import forms
-from orm.models import Jurnal
+from .models import Jurnal
 
 
 class JurnalForm(forms.Form):

@@ -1,5 +1,5 @@
 from django import forms
-from orm.models import Transaksi
+from .models import Transaksi
 import datetime
 
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from orm.models import Jurnal, Transaksi
+from .models import Transaksi
+from jurnal.models import Jurnal
 from transaksi.forms import TransaksiForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib import messages
 from jurnal.forms import JurnalForm
-from orm.models import Jurnal
+from .models import Jurnal
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.

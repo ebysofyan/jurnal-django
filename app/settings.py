@@ -38,10 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
-    'orm',
     'jurnal',
     'transaksi',
-    'authentication',
+    'login',
 ]
 
 MIDDLEWARE_CLASSES = [
